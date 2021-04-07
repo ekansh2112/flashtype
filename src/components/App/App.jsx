@@ -2,6 +2,8 @@ import React from 'react'
 import Nav from '../Nav/Nav';
 import './App.css'
 import Landing from '../Landing/Landing';
+import Footer from '../Footer/Footer';
+import ChallengeSection from '../ChallengeSection/ChallengeSection';
 
 class App extends React.Component{
     render(){
@@ -12,7 +14,9 @@ class App extends React.Component{
                 {/* Landing Page */}
                 <Landing />
                 {/* Chanllenge Section */}
+                <ChallengeSection />
                 {/* Footer */}
+                <Footer />
             </div>
         )
     }
