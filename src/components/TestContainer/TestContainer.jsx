@@ -5,21 +5,32 @@ import  './TestContainer.css'
 
 
 const TestContainer = (
-    {words,
+    {
+    words,
     characters,
-    wpm}
+    wpm,
+    selectedParagraph,
+    timeRemaining,
+    timerStarted
+}
 ) =>{
 
-     const timeRemaning = 1;
 
     return (
         <div className="test-container">
 
 
             {
-              timeRemaning>0? (
+              timeRemaining>0? (
                 <div className="typing-challenge-cont" data-aos="fade-up">
-                <TypingChallengeContainer words={words} characters={characters} wpm={wpm}  />
+                <TypingChallengeContainer 
+                words={words} 
+                characters={characters} 
+                wpm={wpm}
+                selectedParagraph = {selectedParagraph}
+                timeRemaining = {timeRemaining}
+                timerStarted = {timerStarted}  
+                  />
             </div>
               ) : (<div className="try-container">
               <TryAgain words={words} characters={characters} wpm={wpm} />
