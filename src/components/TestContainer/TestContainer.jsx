@@ -11,7 +11,10 @@ const TestContainer = (
     wpm,
     selectedParagraph,
     timeRemaining,
-    timerStarted
+    timerStarted,
+    testInfo,
+    onInputChange,
+    startAgain
 }
 ) =>{
 
@@ -29,11 +32,13 @@ const TestContainer = (
                 wpm={wpm}
                 selectedParagraph = {selectedParagraph}
                 timeRemaining = {timeRemaining}
-                timerStarted = {timerStarted}  
+                timerStarted = {timerStarted} 
+                testInfo = {testInfo} 
+                onInputChange = {onInputChange}
                   />
             </div>
               ) : (<div className="try-container">
-              <TryAgain words={words} characters={characters} wpm={wpm} />
+              <TryAgain startAgain={startAgain} words={words} characters={characters} wpm={wpm} />
           </div>)
             }
            

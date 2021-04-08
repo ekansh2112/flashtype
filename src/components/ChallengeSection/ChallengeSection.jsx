@@ -9,7 +9,10 @@ const ChallengeSection = ({
     characters,
     wpm,
     timerStarted,
-    timeRemaining
+    timeRemaining,
+    testInfo,
+    onInputChange,
+    startAgain
 }) =>{
     return (
         <div className="challenge-section-container">
@@ -23,6 +26,9 @@ const ChallengeSection = ({
              timeRemaining = {timeRemaining}
              timerStarted = {timerStarted}
              selectedParagraph = {selectedParagraph}
+             testInfo = {testInfo}
+             onInputChange = {onInputChange}
+             startAgain = {startAgain}
              />
         </div>
     )
