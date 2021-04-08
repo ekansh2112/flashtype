@@ -4,7 +4,7 @@ import './App.css'
 import Landing from '../Landing/Landing';
 import Footer from '../Footer/Footer';
 import ChallengeSection from '../ChallengeSection/ChallengeSection';
-
+import {SAMPLE_PARAGRAPHS} from "../../data/sampleParagraphs"
 
 const totalTime= 60;
 const serviceURL = "http://metaphorpsum.com/paragraphs/1/9";
@@ -22,6 +22,24 @@ const DefaultState = {
 class App extends React.Component{    
 
     state =DefaultState;
+
+    fetchNewParagraphFallback = () =>{
+        const data = SAMPLE_PARAGRAPHS[
+            Math.floor(Math.random()*SAMPLE_PARAGRAPHS.length)
+        ];
+
+        const selectedParagraphArray = data.split("");
+            // console.log("Splitted array: ",selectedParagraphArray);
+            const testInfo = selectedParagraphArray.map(selectedLetter =>{
+                return {
+                    testLetter: selectedLetter,
+                    status: "notAttempted"
+                };
+            });
+    
+            this.setState({...DefaultState,testInfo, selectedParagraph:data}) // same as this.setState({testInfo:testInfo}) bcoz key and value has same name.
+    
+    }
 
     fetchNewParagraph = () =>{
         fetch(serviceURL)
@@ -45,7 +63,7 @@ class App extends React.Component{
 
     //using lifecycle methods
     componentDidMount () {
-        this.fetchNewParagraph();
+        this.fetchNewParagraphFallback();
     }
 
     startTimer = () =>{
@@ -70,7 +88,7 @@ class App extends React.Component{
 
 
     startAgain = () =>{
-        this.fetchNewParagraph();
+        this.fetchNewParagraphFallback();
 
     }
 
