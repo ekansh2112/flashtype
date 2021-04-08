@@ -28,9 +28,6 @@ const TryAgain = ({
                 <button 
                 onClick={()=>startAgain()}
                 className="btn btn-info endbutton"
-                onClick={()=>{
-                    window.open("https://ekansh2112.github.io/flashtype/", "facebook-share-dialog","width=800,height=600")
-                }}
                 >Re-Try</button>
                 <button
                 onClick={()=>{
