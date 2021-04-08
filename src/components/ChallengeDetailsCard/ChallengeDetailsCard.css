@@ -14,8 +14,8 @@
 }
 
 .card-name {
-  font-size: 25px;
-  margin-bottom: -15px;
+  font-size: 15px;
+  margin-bottom: -15px !important;
 }
 
 .card-value {
