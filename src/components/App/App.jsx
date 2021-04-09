@@ -7,7 +7,7 @@ import ChallengeSection from '../ChallengeSection/ChallengeSection';
 import {SAMPLE_PARAGRAPHS} from "../../data/sampleParagraphs"
 
 const totalTime= 60;
-const serviceURL = "http://metaphorpsum.com/paragraphs/1/9";
+// const serviceURL = "http://metaphorpsum.com/paragraphs/1/9";
 
 const DefaultState = {
     selectedParagraph: "",
@@ -35,7 +35,6 @@ class App extends React.Component{
         ];
 
         const selectedParagraphArray = data.split("");
-            // console.log("Splitted array: ",selectedParagraphArray);
             const testInfo = selectedParagraphArray.map(selectedLetter =>{
                 return {
                     testLetter: selectedLetter,
@@ -43,29 +42,28 @@ class App extends React.Component{
                 };
             });
     
-            this.setState({...DefaultState,testInfo, selectedParagraph:data}) // same as this.setState({testInfo:testInfo}) bcoz key and value has same name.
-    
+            this.setState({...DefaultState,testInfo, selectedParagraph:data}) // same as this.setState({testInfo:testInfo}) bcoz key and value has same name.;
     }
 
-    fetchNewParagraph = () =>{
-        fetch(serviceURL)
-        .then(response => response.text())
-        .then(data => {
-            // console.log(data);
+    // fetchNewParagraph = () =>{
+    //     fetch(serviceURL)
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         // console.log(data);
             
-            const selectedParagraphArray = data.split("");
-            // console.log("Splitted array: ",selectedParagraphArray);
-            const testInfo = selectedParagraphArray.map(selectedLetter =>{
-                return {
-                    testLetter: selectedLetter,
-                    status: "notAttempted"
-                };
-            });
+    //         const selectedParagraphArray = data.split("");
+    //         // console.log("Splitted array: ",selectedParagraphArray);
+    //         const testInfo = selectedParagraphArray.map(selectedLetter =>{
+    //             return {
+    //                 testLetter: selectedLetter,
+    //                 status: "notAttempted"
+    //             };
+    //         });
     
-            this.setState({...DefaultState,testInfo, selectedParagraph:data}) // same as this.setState({testInfo:testInfo}) bcoz key and value has same name.
+    //         this.setState({...DefaultState,testInfo, selectedParagraph:data}) // same as this.setState({testInfo:testInfo}) bcoz key and value has same name.
     
-        });
-    }
+    //     });
+    // }
 
     //using lifecycle methods
     componentDidMount () {
@@ -95,7 +93,6 @@ class App extends React.Component{
 
     startAgain = () =>{
         this.fetchNewParagraphFallback();
-
     }
 
     handleUserInput = (inputValue) =>{
@@ -147,7 +144,7 @@ class App extends React.Component{
             //TODO:----
             this.setState({characters,words})
             return;
-        } else{
+        } else{ //for erased text
             for(let i=index+1;i<this.state.selectedParagraph.length;i++){
                 testInfo[i].status = "notAttempted"
             }
@@ -182,7 +179,6 @@ class App extends React.Component{
     
     render(){
 
-        console.log("test info",this.state.testInfo);
         //NEVER do api calling in render method!
         // fetch(serviceURL)
         // .then(response => response.text())
@@ -204,7 +200,7 @@ class App extends React.Component{
                     timerStarted = {this.state.timerStarted}
                     testInfo = {this.state.testInfo}
                     onInputChange = {this.handleUserInput}
-                    startAgain = {this.startTimer}
+                    startAgain = {this.startAgain}
                     textValue = {this.state.textValue}
                     handleChange = {this.handleChange}
                 />

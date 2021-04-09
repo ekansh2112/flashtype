@@ -10,7 +10,7 @@ const TryAgain = ({
 
 }) =>{
     return (
-        <div className="try-again-container">
+        <div data-aos="fade-up" className="try-again-container">
             <h1>Test Results</h1>
             <div className="result-container">
                 <p>
