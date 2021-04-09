@@ -8,7 +8,9 @@ const TypingChallenge = ({
     timeRemaining,
     timerStarted,
     testInfo,
-    onInputChange
+    onInputChange,
+    textValue,
+    handleChange
 }) =>{
     return (
         <div className="typing-challenge">
@@ -29,7 +31,7 @@ const TypingChallenge = ({
                         {
                             testInfo.map((letterInfo,index) =>{
                                 return (
-                                    <TestLetter key={index} letterInfo={letterInfo} />
+                                    <TestLetter  key={index} letterInfo={letterInfo} />
                                 )
                             })
                         }
@@ -39,7 +41,13 @@ const TypingChallenge = ({
                 <div className="textarea-right">
                     <textarea onChange={(e)=>{
                         onInputChange(e.target.value)
-                    }} className="textarea" placeholder="Start typing here to start the test."></textarea>
+                    }} className="textarea" 
+                    placeholder="Start typing here to start the test."
+                    onCut={handleChange}
+                    onCopy={handleChange}
+                    onPaste = {handleChange}
+
+                    ></textarea>
                 </div>
             </div>
         </div>

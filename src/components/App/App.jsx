@@ -16,12 +16,18 @@ const DefaultState = {
     words: 0,
     characters: 0,
     wpm: 0,
-    testInfo: []
+    testInfo: [],
+    textValue: "" //UNUSED
 };
 
 class App extends React.Component{    
 
     state =DefaultState;
+
+    //Below function is to avoid copy pasting in text box.
+    handleChange = (e) => {
+        e.preventDefault();
+      };
 
     fetchNewParagraphFallback = () =>{
         const data = SAMPLE_PARAGRAPHS[
@@ -118,6 +124,8 @@ class App extends React.Component{
         const words = inputValue.split(" ").length;
         const index = characters - 1;
 
+        // Make a copy of testInfo
+        const testInfo = this.state.testInfo;
         //UNDERFLOW CASE
         if(index<0){
             //TODO: handle edge cases
@@ -136,17 +144,24 @@ class App extends React.Component{
         }
 
         if(index >= this.state.selectedParagraph.length){
+            //TODO:----
             this.setState({characters,words})
             return;
+        } else{
+            for(let i=index+1;i<this.state.selectedParagraph.length;i++){
+                testInfo[i].status = "notAttempted"
+            }
         }
 
-        // Make a copy of testInfo
-        const testInfo = this.state.testInfo;
+        
 
-        //in case user presses backspaces
-        if(!(index===this.state.selectedParagraph.length-1)){
-            testInfo[index+1].status = "notAttempted";
-        }
+        // //in case user presses backspaces
+        // if(!(index===this.state.selectedParagraph.length-1)){
+        //     testInfo[index+1].status = "notAttempted";
+        //     // testInfo.map(val => {
+        //     //     val.status = "notAttempted";
+        //     // })
+        // }
 
         //check for the correct typed letter
         const isCorrect = inputValue[index] === testInfo[index].testLetter;
@@ -167,7 +182,7 @@ class App extends React.Component{
     
     render(){
 
-        // console.log("test info",this.state.testInfo);
+        console.log("test info",this.state.testInfo);
         //NEVER do api calling in render method!
         // fetch(serviceURL)
         // .then(response => response.text())
@@ -190,6 +205,8 @@ class App extends React.Component{
                     testInfo = {this.state.testInfo}
                     onInputChange = {this.handleUserInput}
                     startAgain = {this.startTimer}
+                    textValue = {this.state.textValue}
+                    handleChange = {this.handleChange}
                 />
                 {/* Footer */}
                 <Footer />
